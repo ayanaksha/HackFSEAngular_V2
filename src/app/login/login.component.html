@@ -1,8 +1,28 @@
-<h1>Login</h1>
-<div class="alert alert-warning" *ngIf='invalidLogin'>{{errmessage}}</div>
-<div>
-  User Name : <input type="text" name="username" [(ngModel)]="username">
-  Password  : <input type="password" name="password" [(ngModel)]="password">
-  <button (click)=handleLogin() class="btn btn-success">Login</button>
-</div>
+<mat-grid-list cols="2" rowHeight="1:1">
+    <mat-grid-tile>
+        <mat-grid-tile-footer>Current Stats</mat-grid-tile-footer>
+        <app-stats></app-stats>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-footer>LOGIN</mat-grid-tile-footer>
+      <div class="alert alert-warning" *ngIf='invalidLogin'>{{errmessage}}</div>
+      <div>
+        User Name : <input type="text" name="username" [(ngModel)]="username">
+        Password  : <input type="password" name="password" [(ngModel)]="password">
+        <button (click)=handleLogin() class="btn btn-success">Login</button>
+      </div>
+      <!-- <form class="example-form">
+          <mat-form-field class="example-full-width">
+             <input matInput type="text" name="username" [(ngModel)]="username">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+             <input matInput type="password" name="password" [(ngModel)]="password">
+          </mat-form-field>
+          <button (click)=handleLogin() class="btn btn-success">Login</button>
+      </form> -->
+      
+    </mat-grid-tile>
+  <!-- <mat-grid-tile>3</mat-grid-tile>
+  <mat-grid-tile>4</mat-grid-tile> -->
+</mat-grid-list>
 <!-- User Name : {{username}} -->

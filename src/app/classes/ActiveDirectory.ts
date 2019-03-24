@@ -8,3 +8,4 @@ export class ActiveDirectory {
     buid: string;
     role: string ;
 }
+

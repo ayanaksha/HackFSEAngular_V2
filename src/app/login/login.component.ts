@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HcauthService } from '../service/hcauth.service';
+import { UserLogin } from '../classes/AllClasses';
+import { UserServiceService } from '../service/data/user-service.service';
+import { userID } from '../classes/userID';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +18,8 @@ export class LoginComponent implements OnInit {
   invalidLogin = false
 
   constructor(private router: Router,
-    private authentication: HcauthService) { }
+    private authentication: HcauthService,
+    private userservice2: UserServiceService) { }
    
   ngOnInit() {
   }
@@ -33,17 +37,30 @@ export class LoginComponent implements OnInit {
     // else{
     //   this.invalidLogin = true
     // }
-    console.log(this.username)
-    console.log(this.password)
-    console.log(this.authentication.authenticate(this.username,this.password))
+
+    // RESTORE COMMENTS !!!!!
+    // console.log(this.username)
+    // console.log(this.password)
+    // console.log(this.authentication.authenticate(this.username,this.password))
     
-    if (this.authentication.authenticate(this.username,this.password)){
-      this.invalidLogin = false
-      this.errmessage = 'Login Successful'
-      this.router.navigate(['register',this.username])
-    }
-    else{
-      this.invalidLogin = true
-    }
-  }
+    // if (this.authentication.authenticate(this.username,this.password)){
+    //   this.invalidLogin = false
+    //   this.errmessage = 'Login Successful'
+    //   this.router.navigate(['register',this.username])
+    // }
+    // else{
+    //   this.invalidLogin = true
+    // };
+
+    var userID1 = new userID;
+    userID1.id = 100;
+    userID1.userId = 1;
+    this.userservice2.userCheck(userID1).subscribe(
+      data => {
+        console.log(data)
+      },
+      error => {
+        console.log('Error in Call')
+      })
+  };
 }

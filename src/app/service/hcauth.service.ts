@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserServiceService } from "../service/data/user-service.service";
 import { HttpClient } from '@angular/common/http';
+import { UserLogin } from '../classes/AllClasses';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,22 @@ export class HcauthService {
   
   authenticate(username,password){
     // console.log('before ' + this.isUserLoggedIn())
-    this.userservice1.validateAndLogin(username).subscribe(
+    var userlogin = new UserLogin;
+    userlogin.username = username;
+    userlogin.password = password;
+    this.userservice1.validateAndLogin(userlogin).subscribe(
+      // Response => {
+      //   console.log(Response);
+      //   return true;
+      // });
       data => {
         console.log(data);
         return true;
       },
-        error => {
-          return false;
-        });
+      error => {
+        return false;
+      });
+    return true;
     
     // Correct Hard Coded Implementation**************
     // if(username === 'ayanaksha' && password === 'password123'){
